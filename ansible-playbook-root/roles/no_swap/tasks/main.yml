@@ -1,0 +1,14 @@
+---
+- name: turn off swap
+  command: swapoff -a
+  
+- name: remove swap from fstab
+  lineinfile:
+    path: /etc/fstab
+    regexp: '\\sswap\\s+sw'
+    state: absent
+    
+- name: remove /swapfile
+  file:
+    path: /swapfile
+    state: absent

@@ -1,0 +1,7 @@
+---
+- name: /tmp in tmpfs
+  lineinfile:
+    path: /etc/fstab
+    regexp: '\\s/tmp\\s'
+    line: tmpfs /tmp tmpfs defaults,noatime,nodiratime,norelatime,nosuid,nodev 0 0
+    state: present

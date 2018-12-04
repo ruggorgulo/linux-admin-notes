@@ -1,0 +1,224 @@
+---
+- name: Remove unwanted packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - avahi-daemon
+    - avahi-utils
+    - avahi-autoipd
+    - nvidia-prime-applet
+    - reiserfsprogs
+    - apturl
+    - apturl-common
+    - brltty
+    - evolution-data-server
+    - flatpak
+    
+
+- name: Remove debugging symbols 
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - libc6-dbg
+    - pix-dbg
+    - xed-dbg
+    - xplayer-dbg
+    - xreader-dbg
+    - xviewer-dbg
+
+
+- name: Remove fonts
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - fonts-beng
+    - fonts-deva
+    - fonts-gubbi
+    - fonts-gujr
+    - fonts-guru
+    - fonts-kacst
+    - fonts-kacst-one
+    - fonts-kalapi
+    - fonts-khmeros-core
+    - fonts-knda
+    - fonts-lao
+    - fonts-lklug-sinhala
+    - fonts-lohit-beng-assamese
+    - fonts-lohit-beng-bengali
+    - fonts-lohit-deva
+    - fonts-lohit-gujr
+    - fonts-lohit-guru
+    - fonts-lohit-knda
+    - fonts-lohit-mlym
+    - fonts-lohit-orya
+    - fonts-lohit-taml
+    - fonts-lohit-taml-classical
+    - fonts-lohit-telu
+    - fonts-mlym
+    - fonts-nakula
+    - fonts-navila
+    - fonts-orya
+    - fonts-pagul
+    - fonts-sagadeva
+    - fonts-samyak-deva
+    - fonts-samyak-gujr
+    - fonts-samyak-mlym
+    - fonts-samyak-taml
+    - fonts-smc
+    - fonts-smc-anjalioldlipi
+    - fonts-smc-chilanka
+    - fonts-smc-dyuthi
+    - fonts-smc-karumbi
+    - fonts-smc-keraleeyam
+    - fonts-smc-manjari
+    - fonts-smc-meera
+    - fonts-smc-rachana
+    - fonts-smc-raghumalaylamsans
+    - fonts-smc-suruma
+    - fonts-smc-uroob
+    - fonts-taml
+    - fonts-telu
+    - fonts-telu-extra
+    - fonts-thai-tlwg
+    - fonts-tlwg-garuda
+    - fonts-tlwg-garuda-ttf
+    - fonts-tlwg-kinnari
+    - fonts-tlwg-kinnari-ttf
+    - fonts-tlwg-laksaman
+    - fonts-tlwg-laksaman-ttf
+    - fonts-tlwg-loma
+    - fonts-tlwg-loma-ttf
+    - fonts-tlwg-mono
+    - fonts-tlwg-mono-ttf
+    - fonts-tlwg-norasi
+    - fonts-tlwg-norasi-ttf
+    - fonts-tlwg-purisa
+    - fonts-tlwg-purisa-ttf
+    - fonts-tlwg-sawasdee
+    - fonts-tlwg-sawasdee-ttf
+    - fonts-tlwg-typewriter
+    - fonts-tlwg-typewriter-ttf
+    - fonts-tlwg-typist
+    - fonts-tlwg-typist-ttf
+    - fonts-tlwg-typo
+    - fonts-tlwg-typo-ttf
+    - fonts-tlwg-umpush
+    - fonts-tlwg-umpush-ttf
+    - fonts-tlwg-waree
+    - fonts-tlwg-waree-ttf
+    - fonts-nanum
+    - fonts-takao-pgothic
+    - fonts-wgy-mircrohei
+    - fonts-indic
+    
+# note: dpkg -l hunspell* | perl -ne 'if (m/^ii\s+(\S+)/){print qq{    - $1\n};}'
+- name: Remove Localization
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - hunspell-de-at-frami
+    - hunspell-de-ch-frami
+    - hunspell-de-de-frami
+    - hunspell-en-au
+    - hunspell-en-ca
+    - hunspell-en-gb
+    - hunspell-en-za
+    - hunspell-es
+    - hunspell-fr
+    - hunspell-fr-classical
+    - hunspell-it
+    - hunspell-pt-br
+    - hunspell-pt-pt
+    - hunspell-ru
+    - hyphen-de
+    - hyphen-en-ca
+    - hyphen-en-gb
+    - hyphen-fr
+    - hyphen-it
+    - hyphen-pt-br
+    - hyphen-pt-pt
+    - hyphen-ru
+    - mythes-de
+    - mythes-de-ch
+    - mythes-en-au
+    - mythes-fr
+    - mythes-it
+    - mythes-pt-pt
+    - mythes-ru
+    - wbrazilian
+    - wbritish
+    - wfrench
+    - witalian
+    - wngerman
+    - wogerman
+    - wportugese
+    - wspanish
+    - wswiss
+    - libreoffice-help-de
+    - libreoffice-help-en-gb
+    - libreoffice-help-es
+    - libreoffice-help-fr
+    - libreoffice-help-it
+    - libreoffice-help-pt
+    - libreoffice-help-pt-br
+    - libreoffice-help-ru
+    - libreoffice-help-zh-cn
+    - libreoffice-help-zh-tw
+    - libreoffice-l10n-de
+    - libreoffice-l10n-en-gb
+    - libreoffice-l10n-en-za
+    - libreoffice-l10n-es
+    - libreoffice-l10n-fr
+    - libreoffice-l10n-it
+    - libreoffice-l10n-pt
+    - libreoffice-l10n-pt-br
+    - libreoffice-l10n-ru
+    - libreoffice-l10n-zh-cn
+    - libreoffice-l10n-zh-tw
+
+    
+    
+- name: Remove unwanted mint-specific packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - mintreport
+    - casper
+    - mintupdate
+    - mintwelcome
+    - mint-meta-mate
+    - mint-meta-core
+    
+    
+    
+
+      
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+

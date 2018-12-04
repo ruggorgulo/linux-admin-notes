@@ -1,0 +1,26 @@
+---
+- name: Update repositories cache
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install wanted packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no 
+  vars:
+    packages:
+    - htop
+    - mc
+    - openssh-server
+    - f2fs-tools
+    - vlc
+    - deborphan
+    - zile
+    - putty
+    
+    
+    
+    

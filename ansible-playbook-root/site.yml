@@ -1,0 +1,17 @@
+---
+- name: Install and configure a Development environment on Ubuntu
+
+# this is single line comment.
+  
+  hosts: localhost
+  connection: local
+
+  roles:
+    - no_swap
+    - tmp-tmpfs
+    - logging
+    - unwanted-packages
+    - wanted-packages
+    - jdk_8
+    
+

@@ -1,0 +1,14 @@
+---
+- name: apt-get update
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: install JDK
+  become: yes
+  apt:
+    name: "openjdk-8-jdk"
+
+- name: export JAVA_HOME    # OpenJDK installer does not do this by default and might use different directory in the future
+  become: yes
+  shell: 'echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" >> /etc/environment'
