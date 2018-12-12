@@ -1,0 +1,50 @@
+---
+- name: install docker
+  become: yes
+  apt:
+    state: present
+    install_recommends: no
+    name:
+      - docker.io
+      - docker-compose
+      - cadvisor
+      - ctop
+      - rawdns
+
+- name: create the folder for docker
+  become: yes
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: create Proxy configurations
+  become: yes
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  notify: restart docker
+  with_items:
+    - { src: http-proxy.conf.j2, dest: /etc/systemd/system/docker.service.d/http-proxy.conf }
+    - { src: https-proxy.conf.j2, dest: /etc/systemd/system/docker.service.d/https-proxy.conf }
+
+- name: Flush changes
+  become: yes
+  systemd:
+    daemon_reload: yes
+
+- name: add group of docker
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: get the current user name
+  shell: whoami
+  register: current_user
+
+- name: add the current user to the docker group
+  become: yes
+  user:
+    name: "{{ current_user.stdout }}"
+    groups: docker
+    append: yes
