@@ -1,0 +1,44 @@
+---
+
+# the module apt_repository cannot be used behind proxy
+
+- name: copy x2go ppa key
+  become: yes
+  copy:
+    src: files/0x7CDE3A860A53F9FD.pgp
+    dest: /tmp/0x7CDE3A860A53F9FD.pgp
+
+- name: import x2go ppa key
+  become: yes
+  apt_key:
+    file: /tmp/0x7CDE3A860A53F9FD.pgp
+    id: 7CDE3A860A53F9FD
+  
+- name: add x2go ppa repository
+  become: yes
+  copy:
+    src: files/x2go_ppa_repository.list
+    dest: /etc/apt/sources.list.d/x2go_ppa_repository.list
+    owner: root
+    group: root
+    mode: 0644
+
+- name: update apt packages
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: install x2go server
+  become: yes
+  apt:
+    name:
+      - x2goserver
+      - x2goserver-xsession
+      - x2gomatebindings
+
+- name: x2go service stop and manual start only
+  become: yes
+  systemd:
+    name: x2goserver
+    enabled: no
+    state: stopped

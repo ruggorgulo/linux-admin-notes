@@ -16,9 +16,12 @@
     - tmp_tmpfs
     - logging
     - unwanted-packages
-    - wanted-packages
+    - apt_update
+    - wanted_packages
     - jdk_8
     - bashrc_root
+    - docker
+    - x2go_server
     
 #  environment:
 #    http_proxy: "{{proxy_env.http_proxy}}"
