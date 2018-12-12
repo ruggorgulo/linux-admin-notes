@@ -48,3 +48,25 @@
     name: "{{ current_user.stdout }}"
     groups: docker
     append: yes
+
+- name: cadvisor service stop and manual start only
+  become: yes
+  systemd:
+    name: cadvisor
+    enabled: no
+    state: stopped
+
+- name: docker service stop and manual start only
+  become: yes
+  systemd:
+    name: docker
+    enabled: no
+    state: stopped
+
+- name: rawdns service stop and manual start only
+  become: yes
+  systemd:
+    name: rawdns
+    enabled: no
+    state: stopped
+      
