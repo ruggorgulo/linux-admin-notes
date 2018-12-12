@@ -6,7 +6,7 @@ See particular md files.
 
 ## Proxy 
 * edit file `ansible-playbook-root/group_vars/all` : set correct proxy
-* edit file `ansible-playbook-root/site.yml` : uncomment the `- proxy_settings`
+* edit file `ansible-playbook-root/site.yml` : uncomment all proxy related lines
 
 Run command
 <pre>
