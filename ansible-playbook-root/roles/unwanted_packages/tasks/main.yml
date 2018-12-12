@@ -19,6 +19,30 @@
     - evolution-data-server
     - flatpak
     
+-name remoce cups
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - cups
+    - cups-browsed
+    - cups-bsd
+    - cups-client
+    - cups-common
+    - cups-core-drivers
+    - cups-daemon
+    - cups-filters
+    - cups-filters-core-drivers
+    - cups-ipp-utils
+    - cups-pk-helper
+    - cups-ppdc
+    - cups-server-common
+    - hplip
+    - bluez-cups
 
 - name: Remove debugging symbols 
   become: yes
