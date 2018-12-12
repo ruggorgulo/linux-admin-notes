@@ -1,5 +1,5 @@
 ---
-- name: Install and configure a Development environment on Ubuntu
+- name: Install and configure a Development environment on Ubuntu 18.04 / Mint 19
 
 # this is single line comment.
   
@@ -8,10 +8,10 @@
 
   roles:
     - no_swap
-    - tmp-tmpfs
+    - tmp_tmpfs
     - logging
     - unwanted-packages
     - wanted-packages
     - jdk_8
+    - bashrc_root
     
-

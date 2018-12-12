@@ -1,0 +1,10 @@
+---
+- name: root .bashrc
+  become: yes
+  copy:
+    src: files/bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+
