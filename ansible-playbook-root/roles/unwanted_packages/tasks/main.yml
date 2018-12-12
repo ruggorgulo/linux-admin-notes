@@ -18,8 +18,9 @@
     - brltty
     - evolution-data-server
     - flatpak
+    - modemmanager
     
--name remoce cups
+-name remove cups
   become: yes
   apt:
     name: "{{ packages }}"
@@ -43,6 +44,26 @@
     - cups-server-common
     - hplip
     - bluez-cups
+    - libcupscgi1
+    - libcupsppdc1
+    - libcupsmime1
+    - libgutenprint2
+
+-name remove scanner support
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - colord
+    - libsane-common
+    - libsane-hpaio
+    - libsane1
+    - sane-utils
+    - simple-scan
 
 - name: Remove debugging symbols 
   become: yes
@@ -149,6 +170,7 @@
     - fonts-takao-pgothic
     - fonts-wgy-mircrohei
     - fonts-indic
+    - ttf-ancient-fonts-symbola
     
 # note: dpkg -l hunspell* | perl -ne 'if (m/^ii\s+(\S+)/){print qq{    - $1\n};}'
 - name: Remove Localization
