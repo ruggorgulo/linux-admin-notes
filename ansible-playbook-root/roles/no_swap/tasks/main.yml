@@ -12,3 +12,8 @@
   file:
     path: /swapfile
     state: absent
+
+- name: remove /swap.img
+  file:
+    path: /swap.img
+    state: absent

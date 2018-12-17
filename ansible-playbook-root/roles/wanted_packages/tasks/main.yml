@@ -12,6 +12,7 @@
     install_recommends: no 
   vars:
     packages:
+    - sshpass
     - htop
     - mc
     - openssh-server
