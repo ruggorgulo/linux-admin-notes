@@ -1,0 +1,14 @@
+---
+- name: Remove wifi related packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - crda
+    - iw
+    - wireless-regdb
+

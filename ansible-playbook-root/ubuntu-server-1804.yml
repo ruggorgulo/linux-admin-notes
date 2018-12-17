@@ -1,5 +1,5 @@
 ---
-- name: Install and configure a Development environment on Ubuntu 18.04 / Mint 19
+- name: Configure Ubuntu 18.04 Server
 
 # PROXY
 # =====
@@ -12,17 +12,14 @@
 
   roles:
 #    - proxy_settings
-    - no_swap
-    - tmp_tmpfs
     - logging
-    - unwanted-packages
-    - apt_update
-    - wanted_packages
-    - jdk_8
+    - no_swap
     - bashrc_root
+    - no_wifi
+    - no_snap
+    - apt_update
+    - ansible
     - docker
-    - docker_services_manual
-    - x2go_server
     
 #  environment:
 #    http_proxy: "{{proxy_env.http_proxy}}"
