@@ -1,5 +1,5 @@
 ---
-- name: Remove wifi related packages
+- name: Remove snap related packages
   become: yes
   apt:
     name: "{{ packages }}"
@@ -9,4 +9,6 @@
   vars:
     packages:
     - snapd
-
+    - snap
+    - snap-confine
+    - snapd-xdg-open

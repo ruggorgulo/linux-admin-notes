@@ -1,19 +1,23 @@
 ---
 - name: turn off swap
+  become: yes
   command: swapoff -a
   
 - name: remove swap from fstab
+  become: yes
   lineinfile:
     path: /etc/fstab
     regexp: '\\sswap\\s+sw'
     state: absent
     
 - name: remove /swapfile
+  become: yes
   file:
     path: /swapfile
     state: absent
 
 - name: remove /swap.img
+  become: yes
   file:
     path: /swap.img
     state: absent

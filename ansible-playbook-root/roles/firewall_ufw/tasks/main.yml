@@ -1,10 +1,12 @@
 ---
 - name: UFW - Allow everything and enable
+  become: yes
   ufw:
     state: enabled
     policy: allow
 
 - name: UFW - set logging
+  become: yes
   ufw:
     logging: on
 
@@ -22,9 +24,9 @@
     proto: tcp
 
 
-- name: UFW - default deny incomming
+- name: UFW - default deny incoming
   become: yes
   ufw:
-    direction: incomming
+    direction: incoming
     policy: deny
 
