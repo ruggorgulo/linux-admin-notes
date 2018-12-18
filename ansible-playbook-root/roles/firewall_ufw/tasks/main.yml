@@ -1,0 +1,30 @@
+---
+- name: UFW - Allow everything and enable
+  ufw:
+    state: enabled
+    policy: allow
+
+- name: UFW - set logging
+  ufw:
+    logging: on
+
+# ufw supports connection rate limiting, which is useful for protecting
+# against brute-force login attacks. ufw will deny connections if an IP
+# address has attempted to initiate 6 or more connections in the last
+# 30 seconds. See  http://www.debian-administration.org/articles/187
+# for details. Typical usage is:
+
+- name: UFW - limit ssh
+  become: yes
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+
+- name: UFW - default deny incomming
+  become: yes
+  ufw:
+    direction: incomming
+    policy: deny
+

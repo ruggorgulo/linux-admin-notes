@@ -1,0 +1,19 @@
+---
+- name: Update repositories cache
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Console Editors
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no 
+  vars:
+    packages:
+    - mc
+    - ytree
+    - vifm
+    - nnn
+    - fdclone
