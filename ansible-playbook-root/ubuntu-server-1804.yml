@@ -19,6 +19,7 @@
     - no_snap
     - apt_update
     - ansible
+    - sshfs
     - docker
     - console_editors
     - console_file_managers
