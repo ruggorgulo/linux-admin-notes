@@ -1,0 +1,52 @@
+---
+- name: ensure perl is present
+  become: yes
+  apt:
+    name: perl
+    state: present
+
+- name: download Eclipse IDE page which contains the link
+  get_url:
+    url: https://www.eclipse.org/downloads/packages/
+    dest: /tmp/eclipse_packages_list.html
+    use_proxy: yes
+
+- name: get the url to download the Eclipse IDE
+  command: perl -ne 'if (m{(www.eclipse.org/downloads/.*eclipse-java-.*linux-gtk-x86_64.tar.gz)}) {print $1;}' /tmp/eclipse_packages_list.html
+  register: eclipse_url
+
+- name: download Eclipse IDE
+  get_url:
+    url: "https://{{ eclipse_url.stdout }}"
+    dest: /tmp/eclipse.tgz
+
+- name: get the current user name
+  shell: whoami
+  register: current_user
+
+- name: get the current user group
+  shell: id -ug
+  register: current_group
+
+- name: create directory /opt/eclipse
+  become: yes
+  file:
+    path: /opt/eclipse
+    state: directory
+    mode: 0755
+    owner: "{{ current_user.stdout }}"
+    group: "{{ current_group.stdout }}"
+
+- name: install Eclipe IDE
+  command: tar xzf /tmp/eclipse.tgz
+    chdir: /opt
+    creates: /opt/eclipse/eclipse.ini
+
+- name: desktop file
+  copy:
+    src: files/eclipse.desktop
+    dest: /opt/eclipse/eclipse.desktop
+    owner: "{{ current_user.stdout }}"
+    group: "{{ current_group.stdout }}"
+    mode: 0755
+
