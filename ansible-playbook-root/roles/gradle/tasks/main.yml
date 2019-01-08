@@ -1,0 +1,35 @@
+---
+
+# the module apt_repository cannot be used behind proxy
+
+- name: copy gradle ppa key
+  become: yes
+  copy:
+    src: files/0xD7CC6F019D06AF36.pgp
+    dest: /tmp/0xD7CC6F019D06AF36.pgp
+
+- name: import gradle ppa key
+  become: yes
+  apt_key:
+    file: /tmp/0xD7CC6F019D06AF36.pgp
+    id: D7CC6F019D06AF36
+
+- name: add gradle ppa repository
+  become: yes
+  copy:
+    src: files/gradle_ppa.list
+    dest: /etc/apt/sources.list.d/gradle_ppa.list
+    owner: root
+    group: root
+    mode: 0644
+
+- name: update apt packages
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: install gradle server
+  become: yes
+  apt:
+    name:
+      - gradle
