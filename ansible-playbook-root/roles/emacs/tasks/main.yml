@@ -1,0 +1,13 @@
+---
+- name: Install emacs
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no 
+  vars:
+    packages:
+    - emacs-nox
+    - git-el
+    - python-mode
+    - yaml-mode
+    
