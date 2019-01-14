@@ -1,0 +1,9 @@
+# To re-enable ifupdown on this system, you can run:
+#    sudo apt install ifupdown
+
+auto lo
+iface lo inet loopback
+
+auto {{iface.stdout}}
+allow-hotplug {{iface.stdout}}
+iface {{iface.stdout}} inet dhcp

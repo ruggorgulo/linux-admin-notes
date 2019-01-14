@@ -5,3 +5,28 @@ proxy_env:
   ftp_proxy: http://proxy.example.com:8080
   socks_proxy: http://proxy.example.com:8080
   no_proxy: mail.example.com,.example.com,.home,.lan,localhost,127.0.0.1,::1
+
+# see https://simpledns.com/private-ipv6
+#
+# until you can actually get an IPv6 address range from your ISP, you may
+# want to use "private" addresses for internal networks and testing etc.
+# In IPv6 there is a special "Unique Unicast" IP range of fc00::/7 which
+# should be used for this as per RFC4193: http://www.rfc-editor.org/rfc/rfc4193.txt
+# The official definition looks like this:
+# 
+#
+# | 7 bits |1|  40 bits   |  16 bits  |          64 bits           |
+# +--------+-+------------+-----------+----------------------------+
+# | Prefix |L| Global ID  | Subnet ID |        Interface ID        |
+# +--------+-+------------+-----------+----------------------------+
+#
+# In practice such address will always start with "fd" because the 8th (L) bit must be one.
+# The "Global ID" and "Subnet ID" must be random to ensure uniqueness (which is what this page does).
+# You are free to assign addresses from the rest (Interface ID).
+#
+# Please note:
+# A former standard proposed the use of so-called "site-local" addresses in the fec0::/10 range.
+# This has been deprecated (see RFC3879) and should no longer be used.
+
+ipv6:
+  prefix: "fd0e:bd18:f424:14eb"

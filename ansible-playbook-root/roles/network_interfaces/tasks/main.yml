@@ -1,0 +1,57 @@
+---
+#https://askubuntu.com/questions/1031709/ubuntu-18-04-switch-back-to-etc-network-interfaces#1052023
+
+# Ubuntu 18.04 specific
+# they stopped using the classic /etc/init.d/networking and
+#  /etc/network/interfaces method of configuring the network and
+#  switched to some thing called netplan
+
+# in combination with systemd-networkd it is no-no
+
+- name: install ifupdown and related packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no 
+  vars:
+    packages:
+    - ifupdown
+    - iproute
+
+- name: obtain ethernet interface name
+  shell: ip link | perl -ne 'print $1 if m/^\d+:\s+(en[a-z0-9]+):/'
+  register: iface
+
+- name: create /etc/network/interfaces
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+
+- name: obtain mac address in ipv6 format
+  shell: ip link show dev "{{iface.stdout}}" | perl -ne 'print "$1$2:$3$4:$5$6" if m{link/ether\s+(..):(..):(..):(..):(..):(..)}'
+  register: mac_ipv6
+  when: ipv6.prefix is defined
+
+- name: create ipv6 static address configurations
+  template:
+    src: ipv6_static.j2
+    dest: /tmp/ipv6_static
+  when: ipv6.prefix is defined
+
+- name: join ipv6 config to /etc/network/interfaces
+  shell: cat /tmp/ipv6_static >> /etc/network/interfaces
+  when: ipv6.prefix is defined
+
+- name: Remove unwanted packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - netplan.io
+    - nplan
+
