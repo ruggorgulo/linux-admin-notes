@@ -15,7 +15,9 @@
     - no_swap
     - tmp_tmpfs
     - logging
-    - unwanted-packages
+    - unwanted_packages
+    - no_snap
+    - no_wifi
     - apt_update
     - wanted_packages
     - jdk_8

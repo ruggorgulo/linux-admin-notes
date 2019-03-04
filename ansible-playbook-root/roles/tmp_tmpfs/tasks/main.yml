@@ -1,5 +1,6 @@
 ---
 - name: /tmp in tmpfs
+  become: yes
   lineinfile:
     path: /etc/fstab
     regexp: '\\s/tmp\\s'
