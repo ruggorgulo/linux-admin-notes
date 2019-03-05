@@ -1,0 +1,20 @@
+- name: create ~/.ssh/sockets
+  become: yes
+  file:
+    path: ~/.ssh/sockets
+    state: present
+    mode: 0600
+
+- name: reuse openssh connection
+  blockinfile:
+    path: ~/.ssh/config
+    block: |
+      ControlMaster auto
+      ControlPath ~/.ssh/sockets/%C
+      ControlPersist 600
+
+# see also
+# https://serverfault.com/questions/919837/how-to-share-persist-a-ssh-connection-from-a-shell-script-that-runs-multiple-com
+# https://unix.stackexchange.com/questions/216527/how-to-make-sshs-controlpath-distinguish-between-ipv4-and-ipv6
+# https://www.cyberciti.biz/faq/linux-unix-reuse-openssh-connection/
+

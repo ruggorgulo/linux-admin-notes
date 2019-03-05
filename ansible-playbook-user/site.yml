@@ -1,0 +1,8 @@
+- name: Configure current user
+
+  hosts: localhost
+  connection: local
+
+  roles:
+    - ssh
+
