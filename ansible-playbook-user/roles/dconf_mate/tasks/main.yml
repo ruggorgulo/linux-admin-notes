@@ -1,0 +1,8 @@
+- name: copy dconf mate config to temporary destination
+  copy:
+    src: files/dconf.txt
+    dest: /tmp/dconf.txt
+
+- name: apply mate dconf
+  shell: dconf load / < /tmp/dconf.txt
+
