@@ -12,3 +12,25 @@
 - name: export JAVA_HOME    # OpenJDK installer does not do this by default and might use different directory in the future
   become: yes
   shell: 'echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" >> /etc/environment'
+
+- name: uninstall jdk-11
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no 
+  vars:
+    packages:
+    - openjdk-11-jre
+    - openjdk-11-jre-headless
+
+
+- name: set JAVA_HOME
+  become: yes
+  lineinfile:
+    dest: /etc/environment
+    regexp: '^JAVA_HOME'
+    line: 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/'
+    create: yes
+
