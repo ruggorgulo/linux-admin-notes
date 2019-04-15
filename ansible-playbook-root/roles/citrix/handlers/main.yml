@@ -1,0 +1,4 @@
+---
+- name: rehash certs
+  command: c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
+

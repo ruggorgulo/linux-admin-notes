@@ -30,3 +30,5 @@ proxy_env:
 
 ipv6:
   prefix: "fd0e:bd18:f424:14eb"
+
+username: "{{ lookup('env','USER') }}"
