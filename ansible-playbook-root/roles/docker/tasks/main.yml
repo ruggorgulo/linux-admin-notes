@@ -49,4 +49,14 @@
     groups: docker
     append: yes
 
-      
+# Out of the box a Docker installation on Ubuntu is capable of setting memory limits
+-name: allow to set memory limits
+  become: yes
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX='
+    line: 'GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"'
+    
+-name: update the grub configuration
+  become: yes
+  command: update-grub
