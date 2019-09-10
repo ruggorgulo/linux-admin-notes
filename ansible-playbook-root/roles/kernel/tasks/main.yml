@@ -1,0 +1,20 @@
+---
+- name: Update repositories cache
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Latest linux kernel
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no 
+  vars:
+    packages:
+    - linux-generic
+    
+    
+    
+    
+    
