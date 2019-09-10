@@ -21,6 +21,9 @@
     - deborphan
     - zile
     - putty
+    - mtp-tools
+    - jmtpfs
+
     
     
     
