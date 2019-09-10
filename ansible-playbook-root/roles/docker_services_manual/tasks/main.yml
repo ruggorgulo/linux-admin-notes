@@ -1,22 +1,12 @@
 ---
-- name: cadvisor service stop and manual start only
+- name: docker related services stop and manual start only
   become: yes
   systemd:
-    name: cadvisor
+    name: "{{ item }}"
     enabled: no
     state: stopped
-
-- name: docker service stop and manual start only
-  become: yes
-  systemd:
-    name: docker
-    enabled: no
-    state: stopped
-
-- name: rawdns service stop and manual start only
-  become: yes
-  systemd:
-    name: rawdns
-    enabled: no
-    state: stopped
-      
+  with_items:
+    - cadvisor
+    - rawdns
+    - containerd
+    - runc

@@ -6,12 +6,14 @@
     install_recommends: no
     name:
       - docker.io
+      - runc
+      - containerd
       - docker-compose
       - cadvisor
       - ctop
       - rawdns
 
-- name: create the folder for docker
+- name: create the folder for docker service
   become: yes
   file:
     path: /etc/systemd/system/docker.service.d
