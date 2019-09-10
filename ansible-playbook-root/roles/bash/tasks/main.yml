@@ -1,0 +1,34 @@
+---
+
+- name: install bash completion package
+  become: yes
+  apt:
+    name: bash-completion
+    state: present
+    install_recommends: no 
+
+-name: enable bash completion in interactive shells
+  become: yes
+  blockinfile:
+    path: /etc/bash.bashrc
+    marker_begin: "# enable bash completion in interactive shells"
+    marker_end:  "#fi"
+    block: |
+      # enable bash completion in interactive shells
+      if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+          . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+          . /etc/bash_completion
+        fi
+      fi
+
+- name: root .bashrc
+  become: yes
+  copy:
+    src: files/bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+
