@@ -1,0 +1,16 @@
+---
+- name: download NoMachine NX
+  become: no
+  get_url:
+    url: "https://download.nomachine.com/download/{{nomachine_version}}/Linux/nomachine_{{nomachine_release}}_amd64.deb
+    dest: /tm/nomachine_{{nomachine_release}}_amd64.deb
+  tags:
+    - nomachine
+
+- name: install NoMachine NX
+  become: yes
+  apt:
+    deb: /tm/nomachine_{{nomachine_release}}_amd64.deb
+  tags:
+    - nomachine
+
