@@ -48,6 +48,7 @@
     - libcupsppdc1
     - libcupsmime1
     - libgutenprint2
+    - foomatic-filters
 
 - name: remove scanner support
   become: yes
@@ -116,10 +117,8 @@
     - fonts-lohit-telu
     - fonts-mlym
     - fonts-nakula
-    - fonts-navila
     - fonts-orya
     - fonts-pagul
-    - fonts-sagadeva
     - fonts-samyak-deva
     - fonts-samyak-gujr
     - fonts-samyak-mlym
@@ -133,7 +132,6 @@
     - fonts-smc-manjari
     - fonts-smc-meera
     - fonts-smc-rachana
-    - fonts-smc-raghumalaylamsans
     - fonts-smc-suruma
     - fonts-smc-uroob
     - fonts-taml
@@ -168,7 +166,6 @@
     - fonts-tlwg-waree-ttf
     - fonts-nanum
     - fonts-takao-pgothic
-    - fonts-wgy-mircrohei
     - fonts-indic
     - ttf-ancient-fonts-symbola
     
@@ -217,7 +214,6 @@
     - witalian
     - wngerman
     - wogerman
-    - wportugese
     - wspanish
     - wswiss
     - libreoffice-help-de
