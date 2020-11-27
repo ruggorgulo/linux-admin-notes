@@ -1,0 +1,112 @@
+prog "Idea" /opt/idea-IU-183.5912.21/bin/idea.png /opt/idea-IU-183.5912.21/bin/idea.sh
+prog "Chromium" chromium-browser.png chromium-browser
+prog "Geany" geany.png geany
+prog "Meld" meld.png meld
+prog "Firefox" firefox.png firefox
+prog "Rxvt" urxvt.xpm urxvt
+prog "Terminal" /home/stegdav/icons/octicons-terminal.png  mate-terminal
+prog "VirtualBox" virtualbox.png VirtualBox
+
+menu "Development" folder {
+    prog "Geany" - geany
+    prog "Meld" - meld
+    prog "pgAdmin III" - pgadmin3
+}
+menu "Editors" folder {
+    prog "Text Editor" - xed
+}
+menu "Graphics" folder {
+    prog "Color selection dialog" - mate-color-select
+    prog "Dictionary" - mate-dictionary
+    prog "Document Viewer" - xreader
+    prog "GNU Image Manipulation Program" - gimp-2.8
+    prog "Image Viewer" - xviewer
+    prog "Pix" - pix
+}
+menu "Multimedia" folder {
+    prog "Media Player" - xplayer
+    prog "Rhythmbox" - rhythmbox
+    prog "Sound" - mate-volume-control
+    prog "VLC media player" - vlc
+}
+menu "Network" folder {
+    prog "Chromium" - chromium-browser
+    prog "Citrix Receiver" - /opt/Citrix/ICAClient/selfservice --icaroot /opt/Citrix/ICAClient
+    prog "Firefox" - firefox
+    prog "HexChat" - hexchat
+    prog "PuTTY SSH Client" - putty
+    prog "Remote Viewer" - remote-viewer
+    prog "Suspend X2Go session" - x2gosuspend-session-mate
+    prog "Transmission" - transmission-gtk
+}
+menu "Office" folder {
+    prog "LibreOffice Impress" - libreoffice
+}
+menu "Other" folder {
+    prog "Help" - yelp help:mate-user-guide
+}
+menu "System" folder {
+    menu "Settings" folder {
+        menu "Mate" folder {
+            prog "About Me" - mate-about-me
+            prog "Bluetooth" - blueberry
+            prog "Desktop Settings" - mintdesktop
+            prog "Disks" - gnome-disks
+            prog "Driver Manager" - pkexec driver-manager
+            prog "Firewall Configuration" - gufw
+            prog "Input method" - mintlocale-im
+            prog "Languages" - mintlocale
+            prog "Login Window" - pkexec lightdm-settings
+            prog "Network" - network-admin
+            prog "Network Connections" - nm-connection-editor
+            prog "Printers" - system-config-printer
+            prog "Software Sources" - pkexec mintsources
+            prog "Time and Date" - time-admin
+            prog "Users and Groups" - users-admin
+        }
+        prog "Assistive Technologies" - mate-at-properties
+        prog "Backup Tool" - mintbackup
+        prog "CompizConfig Settings Manager" - ccsm
+        prog "Control Center" - mate-control-center
+        prog "Displays" - mate-display-properties
+        prog "File Management" - caja-file-management-properties
+        prog "Keyboard" - mate-keyboard-properties
+        prog "Keyboard Shortcuts" - mate-keybinding-properties
+        prog "Main Menu" - mozo
+        prog "Mouse" - mate-mouse-properties
+        prog "Network Proxy" - mate-network-properties
+        prog "Onboard Settings" - onboard-settings
+        prog "Popup Notifications" - mate-notification-properties
+        prog "Power Management" - mate-power-preferences
+        prog "Preferred Applications" - mate-default-applications-properties
+        prog "Qt5 Settings" - qt5ct
+        prog "Screensaver" - mate-screensaver-preferences
+        prog "Startup Applications" - mate-session-properties
+        prog "Synaptic Package Manager" - synaptic-pkexec
+        prog "Theme Installer" - mate-appearance-properties
+        prog "Windows" - mate-window-properties
+    }
+    prog "Backup Tool" - mintBackup
+    prog "Disk Usage Analyzer" - mate-disk-usage-analyzer
+    prog "File Browser" - caja --no-desktop
+    prog "GParted" - gparted
+    prog "Log File Viewer" - mate-system-log
+    prog "Power Statistics" - mate-power-statistics
+    prog "System Monitor" - mate-system-monitor
+    prog "Timeshift" - timeshift-launcher
+    prog "USB Image Writer" - mintstick -m iso
+    prog "Virtual Machine Manager" - virt-manager
+}
+menu "Utilities" folder {
+    prog "Archive Manager" - engrampa
+    prog "Calculator" - gnome-calculator
+    prog "Character Map" - gucharmap
+    prog "MATE Font Viewer" - mate-font-viewer
+    prog "Onboard" - onboard
+    prog "ptask" - ptask
+    prog "Redshift" - redshift-gtk
+    prog "Search Tool" - mate-search-tool
+    prog "Take Screenshot" - mate-screenshot --interactive
+    prog "Tomboy Notes" - tomboy --search
+    prog "USB Stick Formatter" - mintstick -m format
+}

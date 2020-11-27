@@ -1,0 +1,46 @@
+kejchal.rdev.deutsche-boerse.de
+
+docker pull postgres:11-alpine
+docker run --name stegdav-postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres:11-alpine
+psql -h localhost -U postgres
+
+docker run --name stegdav-adminer --link stegdav-postgres -p 8080:8080 -e ADMINER_DEFAULT_SERVER=stegdav-postgres -d adminer
+sudo ufw limit 8080/tcp
+
+browse from other machine to http://kejchal.rdev.deutsche-boerse.de:8080
+
+
+other
+======
+docker container list
+docker container stop stegdav-adminer
+docker container rm stegdav-adminer
+
+docker container stop stegdav-postgres stegdav-adminer
+docker container rm stegdav-postgres stegdav-adminer
+
+======
+mail
+======
+ssh eclwsd022.xeop.de '/usr/sbin/sendmail david.stegbauer@deutsche-boerse.com' <<EOM
+> From: Dwarf <noreply@rdev.deutsche-boerse.de>
+> Subject: Kejchal status report
+>
+> Hi, I'm the status report #7
+> EOM
+
+
+=======
+links
+=======
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
+https://stackoverflow.com/questions/39052949/docker-copy-file-from-one-container-to-another
+https://hub.docker.com/_/adminer
+https://hub.docker.com/search?q=pgadmin4&type=image
+https://docs.docker.com/samples/library/postgres/
+https://severalnines.com/blog/deploying-postgresql-docker-container
+https://glenmccallum.com/2018/06/07/postgresql-csharp-docker/
+https://medium.com/@lvthillo/connect-from-local-machine-to-postgresql-docker-container-f785f00461a7
+https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/
+https://docs.docker.com/get-started/part2/#run-the-app
+

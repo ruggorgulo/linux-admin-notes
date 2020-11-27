@@ -1,0 +1,12 @@
+---
+- name: change bash prompt to show git's branch
+  blockinfile:
+    path: /home/{{ current_user.stdout }}/.bashrc
+    insertafter: 'EOF'
+    block: |
+      # change bash prompt to show git's branch 
+        parse_git_branch() {
+         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+        }
+        export PS1="$PS1 \[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+

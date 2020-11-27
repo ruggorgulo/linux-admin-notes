@@ -1,0 +1,10 @@
+ubuntu notes
+
+https://unix.stackexchange.com/questions/469716/systemd-networkd-run-script-after-dhcp-client-aqcuires-new-address
+https://askubuntu.com/questions/891694/systemd-networkd-daemon-does-not-start-the-dhcp-client
+https://technolinchpin.wordpress.com/2016/09/12/networking-for-dummies-systemd-networkd/
+https://bbs.archlinux.org/viewtopic.php?id=204202
+http://geekdom.wesmo.com/2014/01/27/systemd-networkmanager-and-dhclient/
+https://wiki.ubuntuusers.de/systemd/networkd/
+https://wiki.archlinux.org/index.php/Systemd-networkd
+
