@@ -2,3 +2,6 @@
 *.bak
 *.bkp
 *.retry
+
+.idea/
+*.iml

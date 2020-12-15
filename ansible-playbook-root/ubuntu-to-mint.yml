@@ -1,0 +1,15 @@
+---
+- name: Convert Ubuntu 18.04 gnome to Mint Mate 19.03
+
+  # PROXY
+  # =====
+  #   * uncomment here everything related to proxy
+  #   * adjust file group_vars/all
+
+  hosts: localhost
+  connection: local
+
+
+  roles:
+#    - proxy_settings
+    - add-mint-repos
