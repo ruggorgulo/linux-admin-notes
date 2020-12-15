@@ -1,0 +1,17 @@
+- name: Linux Mint packages
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    install_recommends: no
+  vars:
+    packages:
+      - mintsystem
+      - mint-x-icons
+      - mint-y-icons
+      - mintbackup
+      - mintdesktop
+      - mintdrivers
+      - mintlocale
+      - mintsources
+      - mintstick
