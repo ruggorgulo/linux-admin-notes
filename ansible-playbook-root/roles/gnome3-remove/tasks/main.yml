@@ -1,0 +1,52 @@
+- name: Remove Gnome3 desktop
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+    purge: yes
+    install_recommends: no
+  vars:
+    packages:
+      - brasero
+      - evince
+      - gedit
+      - gcr
+      - gkbd-capplet
+      - gnome-accessibility-themes
+      - gnome-bluetooth
+      - gnome-calendar
+      - gnome-control-center
+      - gnome-disk-utility
+      - gnome-font-viewer
+      - gnome-getting-started-docs
+      - gnome-initial-setup
+      - gnome-mahjongg
+      - gnome-menus
+      - gnome-mines
+      - gnome-online-accounts
+      - gnome-power-manager
+      - gnome-screenshot
+      - gnome-shell
+      - gnome-software
+      - gnome-startup-applications
+      - gnome-sudoku
+      - gnome-terminal
+      - gnome-todo
+      - gnome-tweak-tool
+      - gnome-tweaks
+      - gnome-user-docs
+      - gnome-user-guide
+      - gnome-video-effects
+      - gsettings-desktop-schemas
+      - gsettings-ubuntu-schemas
+      - nautilus
+      - remmina
+      - rhythmbox
+      - seahorse
+      - shotwell
+      - totem
+
+- name: Apt AutoRemove
+  become: yes
+  apt:
+    autoremove: yes

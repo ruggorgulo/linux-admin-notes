@@ -13,3 +13,5 @@
   roles:
 #    - proxy_settings
     - add-mint-repos
+    - mint-mate
+    - gnome3-remove
