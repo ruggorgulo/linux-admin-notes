@@ -1,0 +1,27 @@
+---
+- name: Install and configure a Development environment on Ubuntu 18.04 / Mint 19
+
+# PROXY
+# =====
+#   * uncomment here everything related to proxy
+#   * adjust file group_vars/all
+  
+  hosts: localhost
+  connection: local
+
+
+  roles:
+    - no_swap
+    - tmp_tmpfs
+    - logging
+    - unwanted_packages
+    - apt_update
+    - wanted_packages
+    - jdk_8
+    - bashrc_root
+    - docker
+    - x2go_server
+    
+  environment:
+    http_proxy: "{{proxy_env.http_proxy}}"
+    https_proxy: "{{proxy_env.https_proxy}}"
