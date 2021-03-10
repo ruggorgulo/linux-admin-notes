@@ -1,0 +1,7 @@
+- name: Install icewm packages
+  become: true
+  apt:
+    name:
+      - icewm
+    update_cache: true
+    state: latest
