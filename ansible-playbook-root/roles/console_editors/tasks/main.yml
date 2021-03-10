@@ -2,17 +2,16 @@
 - name: Update repositories cache
   become: yes
   apt:
-    update_cache: yes
+
 
 - name: Console Editors
   become: yes
   apt:
-    name: "{{ packages }}"
-    state: present
+    name:
+      - ne
+      - tilde
+      - zile
+      - vim
+    state: latest
+    update_cache: yes
     install_recommends: no 
-  vars:
-    packages:
-    - ne
-    - tilde
-    - zile
-    - vim
