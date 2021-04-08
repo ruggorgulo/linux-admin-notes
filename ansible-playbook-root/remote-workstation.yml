@@ -1,0 +1,29 @@
+---
+- name: remote workstation on Ubuntu 18.04 / Mint 19
+
+# PROXY
+# =====
+#   * uncomment here everything related to proxy
+#   * adjust file group_vars/all
+  
+  hosts: localhost
+  connection: local
+
+
+  roles:
+#    - { role: proxy_settings, tags: proxy }
+    - { role: no_swap, tags: no_swap }
+    - { role: tmp_tmpfs, tags: tmp_tmpfs }
+    - { role: logging, tags: logging }
+    - { role: unwanted_packages, tags: unwanted }
+    - { role: apt_update, tags: apt_update}
+    - { role: wanted_packages, tags: wanted }
+    - { role: emacs, tags: emacs }
+    - { role: bash, tags: bash }
+    - { role: icewm, tags: icewm }
+    - { role: x2go_server, tags: x2go }
+    - { role: opt_dir_developer, tags: opt_dir_developer }
+
+#  environment:
+#    http_proxy: "{{proxy_env.http_proxy}}"
+#    https_proxy: "{{proxy_env.https_proxy}}"
