@@ -1,0 +1,12 @@
+- name: create group developer
+  group:
+    name: developer
+    state: present
+
+- name: directory /opt writable by group developer
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: 0775
+    group: developer
