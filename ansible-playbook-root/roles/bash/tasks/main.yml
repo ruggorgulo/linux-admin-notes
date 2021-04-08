@@ -7,7 +7,7 @@
     state: present
     install_recommends: no 
 
--name: enable bash completion in interactive shells
+- name: enable bash completion in interactive shells
   become: yes
   blockinfile:
     path: /etc/bash.bashrc
