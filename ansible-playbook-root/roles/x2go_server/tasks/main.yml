@@ -1,5 +1,10 @@
 ---
 
+- name: Check if x2go repository is installed
+  shell: find /etc/apt/ -name *.list | xargs cat | grep  ^[[:space:]]*deb.*x2go | wc -l
+  register: x2go_repo_check_output
+  changed_when: false
+
 # the module apt_repository cannot be used behind proxy
 
 - name: copy x2go ppa key
@@ -7,13 +12,15 @@
   copy:
     src: files/0x7CDE3A860A53F9FD.pgp
     dest: /tmp/0x7CDE3A860A53F9FD.pgp
+  when: x2go_repo_check_output.stdout == "0"
 
 - name: import x2go ppa key
   become: yes
   apt_key:
     file: /tmp/0x7CDE3A860A53F9FD.pgp
     id: 7CDE3A860A53F9FD
-  
+  when: x2go_repo_check_output.stdout == "0"
+
 - name: add x2go ppa repository
   become: yes
   copy:
@@ -22,6 +29,7 @@
     owner: root
     group: root
     mode: 0644
+  when: x2go_repo_check_output.stdout == "0"
 
 - name: update apt packages
   become: yes
@@ -36,9 +44,9 @@
       - x2goserver-xsession
       - x2gomatebindings
 
-- name: x2go service stop and manual start only
-  become: yes
-  systemd:
-    name: x2goserver
-    enabled: no
-    state: stopped
+#- name: x2go service stop and manual start only
+#  become: yes
+#  systemd:
+#    name: x2goserver
+#    enabled: no
+#    state: stopped
