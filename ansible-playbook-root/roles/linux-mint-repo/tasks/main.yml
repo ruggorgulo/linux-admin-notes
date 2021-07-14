@@ -1,0 +1,12 @@
+---
+- name: Check if linux mint repository is installed
+  shell: find /etc/apt/ -name *.list | xargs cat | grep  ^[[:space:]]*deb.*linuxmint | wc -l
+  register: linuxmint_repo_check_output
+  changed_when: false
+
+- name: Add linux mint repository into sources list
+  become: true
+  command: "add-apt-repository 'deb http://packages.linuxmint.com uma main upstream import backport'"
+  when: linuxmint_repo_check_output.stdout == "0"
+
+...
